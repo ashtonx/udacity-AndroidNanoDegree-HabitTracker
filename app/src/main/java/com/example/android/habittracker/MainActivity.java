@@ -26,26 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayHabitTable(){
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        String[] habitProjection = {
-                HabitEntry._ID,
-                HabitEntry.COL_HABIT_NAME,
-                HabitEntry.COL_HABIT_NOTES,
-                HabitEntry.COL_HABIT_TYPE,
-                HabitEntry.COL_HABIT_VALUE,
-                HabitEntry.COL_HABIT_SCORE
-        };
-
-        Cursor cursor = db.query(
-                HabitEntry.TABLE_NAME,
-                habitProjection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+        Cursor cursor = getHabitCursorObject();
         String output = HabitEntry._ID + " - "
                 + HabitEntry.COL_HABIT_NAME + " - "
                 + HabitEntry.COL_HABIT_NOTES + " - "
@@ -74,6 +55,28 @@ public class MainActivity extends AppCompatActivity {
         }
         wtf("Output", output);
     }
+
+    private Cursor getHabitCursorObject(){
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        String[] habitProjection = {
+                HabitEntry._ID,
+                HabitEntry.COL_HABIT_NAME,
+                HabitEntry.COL_HABIT_NOTES,
+                HabitEntry.COL_HABIT_TYPE,
+                HabitEntry.COL_HABIT_VALUE,
+                HabitEntry.COL_HABIT_SCORE
+        };
+        return db.query(
+                HabitEntry.TABLE_NAME,
+                habitProjection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
 
     private void insertHabit(){
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
