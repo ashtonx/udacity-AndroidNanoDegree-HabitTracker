@@ -1,2 +1,3 @@
 # HabitTracker
-One of the projects for Android Basics Nanodegree from Udacity
+A Project for Udacity Android Basics Nanodegree.
+no ui elements, project involves working with sqlite db.
